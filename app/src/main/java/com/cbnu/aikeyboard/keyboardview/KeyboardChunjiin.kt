@@ -51,7 +51,7 @@ class KeyboardChunjiin{
             val sharedPreferences = context.getSharedPreferences("setting", Context.MODE_PRIVATE)
             val height = sharedPreferences.getInt("keyboardHeight", 150)
             sound = sharedPreferences.getInt("keyboardSound", -1)
-            vibrate = sharedPreferences.getInt("keyboardVibrate", -1)
+            vibrate = sharedPreferences.getInt("keyboardVibrate", 1)
             val config = context.getResources().configuration
 
             val firstLine = chunjiinLayout.findViewById<LinearLayout>(
@@ -226,7 +226,7 @@ class KeyboardChunjiin{
                             spacialKey.setBackgroundResource(R.drawable.key_background)
                         }
                         "DEL" -> {
-                            spacialKey.setImageResource(R.drawable.del)
+                            spacialKey.setImageResource(R.drawable.ic_delete_btn)
                             spacialKey.visibility = View.VISIBLE
                             actionButton.visibility = View.GONE
                             myOnClickListener = getDeleteAction()

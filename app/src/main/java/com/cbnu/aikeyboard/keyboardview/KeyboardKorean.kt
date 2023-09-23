@@ -58,7 +58,7 @@ class KeyboardKorean constructor(var context:Context, var layoutInflater: Layout
         val height = sharedPreferences.getInt("keyboardHeight", 150)
         val config = context.getResources().configuration
         sound = sharedPreferences.getInt("keyboardSound", -1)
-        vibrate = sharedPreferences.getInt("keyboardVibrate", -1)
+        vibrate = sharedPreferences.getInt("keyboardVibrate", 1)
 
         val numpadLine = koreanLayout.findViewById<LinearLayout>(
             R.id.numpad_line
@@ -189,14 +189,10 @@ class KeyboardKorean constructor(var context:Context, var layoutInflater: Layout
 
     private fun playVibrate(){
         if(vibrate > 0){
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                vibrator.vibrate(VibrationEffect.createOneShot(70, vibrate))
-            }
-            else{
-                vibrator.vibrate(70)
-            }
+            vibrator.vibrate(VibrationEffect.createOneShot(30, 50))
         }
     }
+
 
     private fun getMyClickListener(actionButton:Button):View.OnClickListener{
 
@@ -298,7 +294,7 @@ class KeyboardKorean constructor(var context:Context, var layoutInflater: Layout
                         spacialKey.setBackgroundResource(R.drawable.key_background)
                     }
                     "DEL" -> {
-                        spacialKey.setImageResource(R.drawable.del)
+                        spacialKey.setImageResource(R.drawable.ic_delete_btn)
                         spacialKey.visibility = View.VISIBLE
                         actionButton.visibility = View.GONE
                         myOnClickListener = getDeleteAction()

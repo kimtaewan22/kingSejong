@@ -47,7 +47,7 @@ class KeyboardEmoji{
                 actionButton.setTextColor(Color.WHITE)
                 val spacialKey = children[item].findViewById<ImageView>(R.id.spacial_key)
                 if(fourthLineText[item].equals("DEL")){
-                    actionButton.setBackgroundResource(R.drawable.del)
+                    actionButton.setBackgroundResource(R.drawable.ic_delete_btn)
                     val myOnClickListener = getDeleteAction()
                     actionButton.setOnClickListener(myOnClickListener)
                 }
@@ -87,12 +87,7 @@ class KeyboardEmoji{
 
         private fun playVibrate(){
             if(vibrate > 0){
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    vibrator.vibrate(VibrationEffect.createOneShot(70, vibrate))
-                }
-                else{
-                    vibrator.vibrate(70)
-                }
+                vibrator.vibrate(VibrationEffect.createOneShot(30, 50))
             }
         }
 

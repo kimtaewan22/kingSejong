@@ -56,7 +56,7 @@ class KeyboardEnglish constructor(var context:Context, var layoutInflater: Layou
         sharedPreferences = context.getSharedPreferences("setting", Context.MODE_PRIVATE)
         val height = sharedPreferences.getInt("keyboardHeight", 150)
         sound = sharedPreferences.getInt("keyboardSound", -1)
-        vibrate = sharedPreferences.getInt("keyboardVibrate", -1)
+        vibrate = sharedPreferences.getInt("keyboardVibrate", 1)
 
         val numpadLine = englishLayout.findViewById<LinearLayout>(
             R.id.numpad_line
@@ -136,12 +136,7 @@ class KeyboardEnglish constructor(var context:Context, var layoutInflater: Layou
 
     private fun playVibrate(){
         if(vibrate > 0){
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                vibrator.vibrate(VibrationEffect.createOneShot(70, vibrate))
-            }
-            else{
-                vibrator.vibrate(70)
-            }
+            vibrator.vibrate(VibrationEffect.createOneShot(30, 50))
         }
     }
 
@@ -289,7 +284,7 @@ class KeyboardEnglish constructor(var context:Context, var layoutInflater: Layou
                         spacialKey.setBackgroundResource(R.drawable.key_background)
                     }
                     "DEL" -> {
-                        spacialKey.setImageResource(R.drawable.del)
+                        spacialKey.setImageResource(R.drawable.ic_delete_btn)
                         spacialKey.visibility = View.VISIBLE
                         actionButton.visibility = View.GONE
                         myOnClickListener = getDeleteAction()
