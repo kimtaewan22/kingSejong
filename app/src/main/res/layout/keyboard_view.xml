@@ -10,6 +10,7 @@
         android:orientation="horizontal"
         android:background="@color/black">
         <Button
+            android:id="@+id/spellCheck"
             android:layout_margin="5dp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

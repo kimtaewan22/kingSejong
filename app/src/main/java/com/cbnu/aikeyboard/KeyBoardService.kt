@@ -7,6 +7,8 @@ import com.example.aikeyboard.R
 import android.inputmethodservice.InputMethodService
 import android.view.View
 import android.view.inputmethod.EditorInfo
+import android.widget.Button
+import com.cbnu.aikeyboard.keyboardview.KeyboardAI
 import com.cbnu.aikeyboard.keyboardview.KeyboardChunjiin
 import com.cbnu.aikeyboard.keyboardview.KeyboardEmoji
 import com.cbnu.aikeyboard.keyboardview.KeyboardEnglish
@@ -21,6 +23,8 @@ class KeyBoardService : InputMethodService(){
     lateinit var keyboardKorean: KeyboardKorean
     lateinit var keyboardEnglish: KeyboardEnglish
     lateinit var keyboardSimbols: KeyboardSimbols
+    lateinit var keyboardAI: KeyboardAI
+    lateinit var keyboardChangeAi: Button
     var isQwerty = 0 // shared preference에 데이터를 저장하고 불러오는 기능 필요
 
 
@@ -54,6 +58,11 @@ class KeyBoardService : InputMethodService(){
                     keyboardFrame.removeAllViews()
                     keyboardFrame.addView(KeyboardEmoji.newInstance(applicationContext, layoutInflater, currentInputConnection, this))
                 }
+                4 -> {
+                    keyboardFrame.removeAllViews()
+                    keyboardFrame.addView(keyboardAI.getLayout())
+                    keyboardAI.inputtedText()
+                }
             }
         }
     }
@@ -62,18 +71,26 @@ class KeyBoardService : InputMethodService(){
         super.onCreate()
         keyboardView = layoutInflater.inflate(R.layout.keyboard_view, null) as LinearLayout
         keyboardFrame = keyboardView.findViewById(R.id.keyboard_frame)
+        keyboardChangeAi = keyboardView.findViewById(R.id.spellCheck)
+        keyboardChangeAi.setOnClickListener {
+            keyboardInterationListener.modechange(4)
+        }
     }
 
     override fun onCreateInputView(): View {
         keyboardKorean = KeyboardKorean(applicationContext, layoutInflater, keyboardInterationListener)
         keyboardEnglish = KeyboardEnglish(applicationContext, layoutInflater, keyboardInterationListener)
         keyboardSimbols = KeyboardSimbols(applicationContext, layoutInflater, keyboardInterationListener)
+        keyboardAI = KeyboardAI(applicationContext, layoutInflater, keyboardInterationListener)
         keyboardKorean.inputConnection = currentInputConnection
         keyboardKorean.init()
         keyboardEnglish.inputConnection = currentInputConnection
         keyboardEnglish.init()
         keyboardSimbols.inputConnection = currentInputConnection
         keyboardSimbols.init()
+        keyboardAI.inputConnection = currentInputConnection
+        keyboardAI.init()
+
 
         return keyboardView
     }
