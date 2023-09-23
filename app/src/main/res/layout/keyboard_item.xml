@@ -11,6 +11,7 @@
         app:layout_constraintRight_toRightOf="parent"
         android:textSize="8sp"
         android:padding="8dp"
+        android:textColor="@color/white"
         android:text="."/>
     <Button
         android:id="@+id/key_button"
@@ -21,6 +22,7 @@
         android:layout_marginRight="4dp"
         android:layout_marginLeft="2dp"
         android:duplicateParentState="true"
+        android:backgroundTint="@color/keyboardDivider"
         android:longClickable="true"
         android:background="@drawable/key_background"/>
     <ImageView

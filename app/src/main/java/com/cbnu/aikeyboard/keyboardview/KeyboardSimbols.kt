@@ -1,16 +1,15 @@
-package com.myhome.rpgkeyboard.keyboardview
+package com.cbnu.aikeyboard.keyboardview
 
 import android.content.Context
 import android.content.res.Configuration
+import android.graphics.Color
 import android.inputmethodservice.Keyboard
 import android.media.AudioManager
 import android.os.*
-import android.util.Log
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
-import android.view.animation.Animation
 import android.view.inputmethod.InputConnection
 import android.widget.Button
 import android.widget.ImageView
@@ -18,7 +17,6 @@ import android.widget.LinearLayout
 import androidx.core.view.children
 import com.cbnu.aikeyboard.KeyboardInterationListener
 import com.example.aikeyboard.R
-import com.myhome.rpgkeyboard.*
 
 class KeyboardSimbols constructor(var context:Context, var layoutInflater: LayoutInflater, var keyboardInterationListener: KeyboardInterationListener) {
     lateinit var simbolsLayout: LinearLayout
@@ -233,6 +231,7 @@ class KeyboardSimbols constructor(var context:Context, var layoutInflater: Layou
             val myText = myKeysText[line]
             for(item in children.indices){
                 val actionButton = children[item].findViewById<Button>(R.id.key_button)
+                actionButton.setTextColor(Color.WHITE)
                 val spacialKey = children[item].findViewById<ImageView>(R.id.spacial_key)
                 var myOnClickListener:View.OnClickListener? = null
                 when(myText[item]){

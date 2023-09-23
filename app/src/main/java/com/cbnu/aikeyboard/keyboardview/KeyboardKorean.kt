@@ -1,8 +1,9 @@
-package com.myhome.rpgkeyboard.keyboardview
+package com.cbnu.aikeyboard.keyboardview
 
 import android.content.Context
 import android.content.SharedPreferences
 import android.content.res.Configuration
+import android.graphics.Color
 import android.inputmethodservice.Keyboard
 import android.media.AudioManager
 import android.os.*
@@ -283,6 +284,7 @@ class KeyboardKorean constructor(var context:Context, var layoutInflater: Layout
             var longClickIndex = 0
             for(item in children.indices){
                 val actionButton = children[item].findViewById<Button>(R.id.key_button)
+                actionButton.setTextColor(Color.WHITE)
                 val spacialKey = children[item].findViewById<ImageView>(R.id.spacial_key)
                 var myOnClickListener:View.OnClickListener? = null
                 when(myText[item]){
@@ -402,6 +404,4 @@ class KeyboardKorean constructor(var context:Context, var layoutInflater: Layout
                 KeyEvent.FLAG_SOFT_KEYBOARD))
         }
     }
-
-
 }

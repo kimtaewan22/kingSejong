@@ -1,7 +1,8 @@
-package com.myhome.rpgkeyboard.keyboardview
+package com.cbnu.aikeyboard.keyboardview
 
 import android.content.Context
 import android.content.res.Configuration
+import android.graphics.Color
 import android.inputmethodservice.Keyboard
 import android.media.AudioManager
 import android.os.Build
@@ -109,7 +110,7 @@ class KeyboardNumpad{
                 for(item in children.indices){
                     val actionButton = children[item].findViewById<Button>(R.id.key_button)
                     actionButton.text = myText[item]
-
+                    actionButton.setTextColor(Color.WHITE)
                     buttons.add(actionButton)
 
                     val clickListener = (View.OnClickListener {

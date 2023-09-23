@@ -1,6 +1,7 @@
-package com.myhome.rpgkeyboard.keyboardview
+package com.cbnu.aikeyboard.keyboardview
 
 import android.content.Context
+import android.graphics.Color
 import android.os.*
 import android.view.LayoutInflater
 import android.view.View
@@ -43,6 +44,7 @@ class KeyboardEmoji{
             val children = fourthLine.children.toList()
             for(item in children.indices){
                 val actionButton = children[item].findViewById<Button>(R.id.key_button)
+                actionButton.setTextColor(Color.WHITE)
                 val spacialKey = children[item].findViewById<ImageView>(R.id.spacial_key)
                 if(fourthLineText[item].equals("DEL")){
                     actionButton.setBackgroundResource(R.drawable.del)

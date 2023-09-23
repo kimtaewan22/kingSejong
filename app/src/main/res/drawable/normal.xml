@@ -7,7 +7,7 @@
                 android:bottomRightRadius="12dp"
                 android:topLeftRadius="12dp"
                 android:topRightRadius="4dp"></corners>
-            <solid android:color="@color/keyboardBoarder"/>
+            <solid android:color="@color/keyboardDivider"/>
         </shape>
     </item>
     <item android:bottom="2dp">

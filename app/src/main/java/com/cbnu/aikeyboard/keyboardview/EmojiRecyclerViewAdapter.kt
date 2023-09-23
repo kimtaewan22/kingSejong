@@ -1,4 +1,4 @@
-package com.myhome.rpgkeyboard.keyboardview
+package com.cbnu.aikeyboard.keyboardview
 
 import android.content.Context
 import android.view.LayoutInflater

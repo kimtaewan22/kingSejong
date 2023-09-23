@@ -1,4 +1,4 @@
-package com.myhome.rpgkeyboard.keyboardview
+package com.cbnu.aikeyboard.keyboardview
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -10,6 +10,7 @@ import android.media.AudioManager
 import android.content.Context.AUDIO_SERVICE
 import android.content.SharedPreferences
 import android.content.res.Configuration
+import android.graphics.Color
 import android.os.*
 import android.view.KeyEvent
 import android.view.MotionEvent
@@ -274,6 +275,7 @@ class KeyboardEnglish constructor(var context:Context, var layoutInflater: Layou
             var longClickIndex = 0
             for(item in children.indices){
                 val actionButton = children[item].findViewById<Button>(R.id.key_button)
+                actionButton.setTextColor(Color.WHITE)
                 val spacialKey = children[item].findViewById<ImageView>(R.id.spacial_key)
                 var myOnClickListener:View.OnClickListener? = null
                 when(myText[item]){
@@ -320,6 +322,7 @@ class KeyboardEnglish constructor(var context:Context, var layoutInflater: Layou
                         myOnClickListener = getMyClickListener(actionButton)
                         if(line > 0 && line < 4){//특수기호가 삽입될 수 있는 라인
                             longClickTextView.setText(myLongClickKeysText[line - 1].get(longClickIndex++))
+                            longClickTextView.setTextColor(Color.WHITE)
                             longClickTextView.bringToFront()
                             longClickTextView.setOnClickListener(myOnClickListener)
                             actionButton.setOnLongClickListener(getMyLongClickListener(longClickTextView))

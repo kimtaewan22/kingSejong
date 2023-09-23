@@ -5,7 +5,7 @@
 
     <color name="keyboardBoarder">#ddd</color>
     <color name="keyboardBackground">#eee</color>
-    <color name="keyboardDivider">#fff</color>
+    <color name="keyboardDivider">#272424</color>
     <color name="keyboardPressed">#ff95A5A6</color>
     <color name="setting_header_background">#0099ff</color>
     <drawable name="screen_background_holo_light">#fff3f3f3</drawable>

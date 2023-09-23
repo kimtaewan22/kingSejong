@@ -7,12 +7,12 @@ import com.example.aikeyboard.R
 import android.inputmethodservice.InputMethodService
 import android.view.View
 import android.view.inputmethod.EditorInfo
-import com.myhome.rpgkeyboard.keyboardview.KeyboardChunjiin
-import com.myhome.rpgkeyboard.keyboardview.KeyboardEmoji
-import com.myhome.rpgkeyboard.keyboardview.KeyboardEnglish
-import com.myhome.rpgkeyboard.keyboardview.KeyboardKorean
-import com.myhome.rpgkeyboard.keyboardview.KeyboardNumpad
-import com.myhome.rpgkeyboard.keyboardview.KeyboardSimbols
+import com.cbnu.aikeyboard.keyboardview.KeyboardChunjiin
+import com.cbnu.aikeyboard.keyboardview.KeyboardEmoji
+import com.cbnu.aikeyboard.keyboardview.KeyboardEnglish
+import com.cbnu.aikeyboard.keyboardview.KeyboardKorean
+import com.cbnu.aikeyboard.keyboardview.KeyboardNumpad
+import com.cbnu.aikeyboard.keyboardview.KeyboardSimbols
 
 
 class KeyBoardService : InputMethodService(){
@@ -89,4 +89,6 @@ class KeyBoardService : InputMethodService(){
             keyboardInterationListener.modechange(1)
         }
     }
+
+
 }

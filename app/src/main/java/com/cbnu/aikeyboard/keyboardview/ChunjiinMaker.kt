@@ -1,4 +1,4 @@
-package com.myhome.rpgkeyboard.keyboardview
+package com.cbnu.aikeyboard.keyboardview
 
 import android.view.inputmethod.InputConnection
 
