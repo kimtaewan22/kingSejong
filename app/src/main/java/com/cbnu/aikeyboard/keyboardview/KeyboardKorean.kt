@@ -7,6 +7,7 @@ import android.graphics.Color
 import android.inputmethodservice.Keyboard
 import android.media.AudioManager
 import android.os.*
+import android.util.Log
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.MotionEvent
@@ -17,10 +18,13 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.core.view.children
 import com.cbnu.aikeyboard.KeyboardInterationListener
+import com.cbnu.aikeyboard.restapi.ServerCommunicator
 import com.example.aikeyboard.R
 import java.lang.NumberFormatException
 
-class KeyboardKorean constructor(var context:Context, var layoutInflater: LayoutInflater, var keyboardInterationListener: KeyboardInterationListener){
+class KeyboardKorean constructor(var context:Context,
+                                 var layoutInflater: LayoutInflater,
+                                 var keyboardInterationListener: KeyboardInterationListener){
 
     lateinit var koreanLayout: LinearLayout
     var isCaps:Boolean = false
@@ -47,6 +51,7 @@ class KeyboardKorean constructor(var context:Context, var layoutInflater: Layout
     val layoutLines = ArrayList<LinearLayout>()
     var downView:View? = null
     var capsView:ImageView? = null
+
 
     fun init(){
         koreanLayout = layoutInflater.inflate(R.layout.keyboard_action, null) as LinearLayout
@@ -182,9 +187,17 @@ class KeyboardKorean constructor(var context:Context, var layoutInflater: Layout
         when (i) {
             32 -> am!!.playSoundEffect(AudioManager.FX_KEYPRESS_SPACEBAR)
             Keyboard.KEYCODE_DONE, 10 -> am!!.playSoundEffect(AudioManager.FX_KEYPRESS_RETURN)
-            Keyboard.KEYCODE_DELETE -> am!!.playSoundEffect(AudioManager.FX_KEYPRESS_DELETE)
-            else -> am!!.playSoundEffect(AudioManager.FX_KEYPRESS_STANDARD, -1.toFloat())
+            Keyboard.KEYCODE_DELETE -> {
+                am!!.playSoundEffect(AudioManager.FX_KEYPRESS_DELETE)
+                hangulMaker.delete()
+            }
+            else -> {
+                am!!.playSoundEffect(AudioManager.FX_KEYPRESS_STANDARD, -1.toFloat())
+                // Send the typed content to the server when a key is pressed
+                sendTypedContentToServer(hangulMaker.getTypedContent())
+            }
         }
+
     }
 
     private fun playVibrate(){
@@ -404,4 +417,8 @@ class KeyboardKorean constructor(var context:Context, var layoutInflater: Layout
                 KeyEvent.FLAG_SOFT_KEYBOARD))
         }
     }
+    private fun sendTypedContentToServer(content: String) {
+        ServerCommunicator.sendTypedContent(content)
+    }
+
 }
